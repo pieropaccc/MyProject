@@ -1,0 +1,34 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main  # o la rama que utilices
+  pull_request:
+    branches:
+      - main  # o la rama que utilices
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Corremos los tests en un contenedor de Ubuntu
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # Clona tu repositorio
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # Define la versión de Node.js
+
+    - name: Install dependencies
+      run: |
+        npm install  # Instala las dependencias
+
+    - name: Install Playwright Browsers
+      run: |
+        npx playwright install 
+
+    - name: Run Playwright tests
+      run: |
+        npx playwright test  
