@@ -21,9 +21,11 @@ jobs:
       with:
         node-version: '20'  # Define la versión de Node.js
 
-    - name: Install dependencies
+        - name: Install dependencies
       run: |
-        npm install  # Instala las dependencias
+        npm install
+        npx playwright install
+
 
     - name: Install Playwright Browsers
       run: |
