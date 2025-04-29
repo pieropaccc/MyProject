@@ -21,10 +21,10 @@ jobs:
       with:
         node-version: '20'  # Define la versión de Node.js
 
-        - name: Install dependencies
+          - name: Install Playwright Browsers
       run: |
-        npm install
-        npx playwright install
+        sudo npx playwright install
+
 
 
     - name: Install Playwright Browsers
