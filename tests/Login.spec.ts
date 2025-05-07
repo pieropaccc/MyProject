@@ -33,7 +33,7 @@ test('Incorrect Username', async({page}) =>{
 })
 
 test('Incorrect Password', async ({ page }) => {
- const loginPage = new Login(page);
+ const loginPage = new Login        (page);
 
  await loginPage.login('practice', 'WrongPassword!');
  await page.getByText("Your password is invalid!")

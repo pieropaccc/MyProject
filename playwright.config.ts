@@ -5,4 +5,8 @@ export default defineConfig({
   use: {
     headless: true,
   },
+  reporter: [
+    ['list'],
+    ['allure-playwright']
+  ],
 });
