@@ -1,15 +1,12 @@
-name: Playwright Tests with Allure
+name: Run Playwright with Allure and deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - '**'
-  pull_request:
-    branches:
-      - '**'
+      - main
 
 jobs:
-  test:
+  test-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,27 +19,21 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Install Playwright Browsers
-        run: |
-          npx playwright install --with-deps
+        run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: |
-          npx playwright test
+      - name: Run tests
+        run: npx playwright test
 
-      - name: Generate Allure Report
+      - name: Generate Allure report
         run: |
           npx allure generate allure-results --clean -o allure-report
 
-      - name: Compress Allure Report
-        run: |
-          tar -czf allure-report.tar.gz allure-report
-
-      - name: Upload Allure Report as artifact
-        uses: actions/upload-artifact@v2
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: allure-report
-          path: allure-report.tar.gz
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-report
+
