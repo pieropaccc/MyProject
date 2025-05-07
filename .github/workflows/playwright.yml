@@ -1,9 +1,9 @@
-name: Playwright Tests
+name: Playwright Tests with Allure
 
 on:
   push:
     branches:
-      - '**'
+      - '**'  # Hacerlo correr en cualquier rama
   pull_request:
     branches:
       - '**'
@@ -38,7 +38,7 @@ jobs:
           npx allure generate allure-results --clean -o allure-report
 
       - name: Upload Allure Report as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2.2.4  # Versión más reciente disponible
         with:
           name: allure-report
           path: allure-report
