@@ -1,0 +1,15 @@
+# Dependencias
+node_modules/
+
+# Reportes de testing
+allure-results/
+allure-report/
+test-results/
+*.log
+
+# Archivos de configuración locales
+.env
+.DS_Store
+
+# Otros temporales de Playwright
+playwright-report/
